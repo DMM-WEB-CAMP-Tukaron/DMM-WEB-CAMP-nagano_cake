@@ -12,7 +12,7 @@
             <td><%= f.label :商品名 %></td>
             <td><%= f.text_field :name %></td>
           </tr>
-          <tr> 
+          <tr>
             <td><%= f.label :商品説明 %></td>
             <td><%= f.text_area :introduction %></td>
           </tr>
@@ -26,8 +26,8 @@
           </tr>
           <tr>
             <td><%= f.label :販売ステータス %></td>
-            <td><%= f.label :販売中 %><%= f.radio_button :is_active,"true" %></td>
-            <td><%= f.label :販売停止 %><%= f.radio_button :is_active,"false" %></td>
+            <td><%= f.label :販売中 %><%= f.radio_button :is_active,"販売中" %></td>
+            <td><%= f.label :販売停止 %><%= f.radio_button :is_active,"販売停止" %></td>
           </tr>
           <tr>
             <td></td>
