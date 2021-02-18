@@ -1,7 +1,7 @@
 class Public::AddresController < ApplicationController
 
   def index
-    @addres = Addre.all
+    @customer = current_customer
     @addre = Addre.new
   end
 
@@ -11,6 +11,7 @@ class Public::AddresController < ApplicationController
 
   def create
     @addre = Addre.new(addre_params)
+    
     @addre.save
     redirect_to addres_path
   end
