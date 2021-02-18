@@ -1,43 +1,43 @@
 <div class="container">
-
-    <div class="row">
-        <div class="page-header">
-            <h1>会員一覧</h1>
-        </div>
+  <div class="row">
+    <div class="page-header">
+      <h1>会員一覧</h1>
     </div>
+  </div>
 
-    <div class="row">
-        <div class="col-xs-10 table-responsive">
-            <table class="table">
-                <tr class="active">
-                    <th>会員ID</th>
-                    <th>氏名</th>
-                    <th>メールアドレス</th>
-                    <th>ステータス</th>
-                <tr>
-                <% @customer.each do |user| %>
-                    <tr>
-                        <td><%= customer.id%></td>
-                        <td><%= link_to user.last_name+customer.first_name, admin_customer_path(customer.id) %></td>
-                        <td><%= customer.email%></td>
-                        <td>
-                            <% if customer.validation == true %>
-								<%= "有効" %>
-							<% else %>
-								<%= "退会済み" %>
-							<% end %>
-                        </td>
-                    <tr>
-                <% end %>
-            </table>
-        </div>
+  <div class="row">
+    <div class="col-xs-10 table-responsive">
+      <table class="table">
+        <tr class="active">
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        <tr>
+        <% @customer.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id) %></td>
+              <td><%= customer.email %></td>
+              <td>
+                <% if customer.validation == true %>
+    			  <%= "有効" %>
+    			<% else %>
+    			  <%= "退会" %>
+    			<% end %>
+              </td>
+            <tr>
+        <% end %>
+      </table>
     </div>
-
-    <%# kaminariのページング記述 %>
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-            <%= paginate @customers %>
-        </div>
+  </div>
+  
+      <!--kaminariのページネーション-->
+  <div class="row">
+    <div class="col-xs-9 col-xs-offset-3">
+      <%= paginate @customers %>
     </div>
+  </div>
 
+  
 </div>
