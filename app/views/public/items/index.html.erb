@@ -1,12 +1,16 @@
 <h2>商品一覧</h1>
 <div class="row">
-  <% @item.each do |item| %>
+  <% @items.each do |item| %>
     <table class="col-md-6">
       <tr>
         <td><%= attachment_image_tag sweet, :image, :fill, 150, 150, format: 'jpeg' %></td>
+      </tr>
+      <tr>
         <td><%= item.name %></td>
+      </tr>
+      <tr>
         <td><%= item.price %></td>
       </tr>
     </table>
-  <%= end %>
+  <% end %>
 </div>
