@@ -2,15 +2,15 @@
   <div class="row">
     <div class="col-md-8 offset-md-1">
       <h1>注文情報</h1>
-      <%= form_with model: @oders, url: oders_path, local:true do |f| %>
+      <%= form_with model: @oders, url: comfirm_path, local:true do |f| %>
       <div class="form-group">
       <!--お支払い情報-->
         お支払い方法<br>
         <label>
-          <%= f.radio_button :billing_amount, 0, checked: "checked" %>クレジットカード<br>
+          <%= f.radio_button :billing_amount, "クレジットカード", checked: "checked" %>クレジットカード<br>
         </label>
         <label>
-          <%= f.radio_button :billing_amount, 1 %>銀行振り込み<br>
+          <%= f.radio_button :billing_amount, "銀行振り込み" %>銀行振り込み<br>
         </label>
       </div>
       <!--お届け先情報-->
@@ -48,10 +48,11 @@
             </tbody>
           </table>
         </div>
-          <br><%= f.submit '新規登録' %>
+          <br><%= f.submit '確認画面へ進む' %>
         </label>
       <% end %>
     </div>
   </div>
 </div>
+
 
