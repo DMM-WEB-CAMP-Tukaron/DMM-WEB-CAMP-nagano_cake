@@ -1,31 +1,38 @@
-<div class="layer">
-
- <div class="layer-txt">
-  ようこそ、ながのCAKEへ！<br>
-  このサイトは、ケーキ販売のECサイトになります。<br>
-  会員でない方も商品の閲覧はできますが、<br>
-  購入には会員登録が必要になります。
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  <!--ようこそ文章-->
+  <div class="col-md-6 offset-md-3">
+   <div class="border">
+    <p>
+     ようこそ、ながのCAKEへ！<br>
+     このサイトは、ケーキ販売のECサイトになります。<br>
+     会員でない方も商品の閲覧はできますが、<br>
+     購入には会員登録が必要になります。
+    </p>
+   </div>
   </div>
  </div>
 </div>
 
+
+
 <h1>新着情報</h1>
 <div class="container pull-left table-responsive">
  <table class="table", display: block>
-    <%# @items.first(5).each do |item| %>
+    <% @items.each do |item| %>
      <thead>
       <tr>
-       <%# attachment_image_tag item, :profile_image, size: "40x40", format: 'jpeg' %>
-      </tr>
+       <%= attachment_image_tag(item, :image, :fill, 100, 100) %>
+      </tr><br>
       <tr>
-       <%# item.name %>
-      </tr>
+       <%= item.name %>
+      </tr><br>
       <tr>
-       ¥<%# item.price %>
-      </tr>
+       ¥<%= item.price %>
+      </tr><br>
      </thead>
-   <%# end %>
+   <% end %>
  </table>
 </div>
 
-<%# linl_to '全ての商品を見る', imes_path(@item), margin:right 50px %> 
+<%= link_to '全ての商品を見る', admin_items_path %>
