@@ -1,0 +1,18 @@
+<h1>会員情報詳細</h1>
+
+  <%= @customer.id %>
+  <%= @customer.last_name %>
+  <%= @customer.last_name_kana %>
+  <%= @customer.first_name %>
+  <%= @customer.first_name_kana %>
+  <%= @customer.postal_code %>
+  <%= @customer.address %>
+  <%= @customer.telephone_number %>
+  <%= @customer.email %>
+  <% if @customer.is_deleted == false %>
+    <%= "有効" %>
+  <% else %>
+    <%= "退会" %>
+  <% end %>
+
+  <%= link_to "編集する", edit_admin_customer_path(@customer)%>
