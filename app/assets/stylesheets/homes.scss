@@ -3,17 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // homes_topの画像とテキスト
-.layer{
-  display: flex;
-  background-image: url("<%= asset_path('cupcakes-690040_1920.png') %>");
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
+.col-md-6 {
+  padding-top: 15%;
 }
 
-// 文字の設定
-.layer-txt{
-  color: #000000;
-  letter-spacing: 0.4rem;
+.border {
+  padding: 5%;
 }
