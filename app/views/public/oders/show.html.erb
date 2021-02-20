@@ -1,0 +1,68 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h1>注文情報確認</h1>
+      <table class=“table”, display: block>
+        <% @oder_item.each do |addre| %>
+        <thead>
+          <tr>
+            <th>
+              短歌（税込）
+            </th>
+            <th>
+              数量
+            </th>
+            <th>
+              小計
+            </th>
+          </tr>
+          <% @oder_item.each do |addre| %>
+          <tr>
+            <th>
+              <%= attachment_image_tag sweet, :image, :fill, 150, 150, format: 'jpeg' %>
+            </th>
+            <th>
+              <%= oder_item.price %>
+            </th>
+            <th>
+              <%= oder_item.amount %>
+            </th>
+            <th>
+              <%= oder_item.amount * oder_item.price %>
+            </th>
+          </tr>
+        </thead>
+        <% end %>
+      </table>
+      <table class=“table”, display: block>
+        <thead>
+          <tr>
+            <th>
+              送料
+            </th>
+            <th>
+              <%= @oder.shipping %>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              商品合計
+            </th>
+            <th>
+              <%= @oder.item_sum %>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              御請求額
+            </th>
+            <th>
+              <%= @oder.payment %>
+            </th>
+          </tr>
+        </thead>
+      </table>
+      <h2>支払い方法</h2>
+    </div>
+  </div>
+</div>
