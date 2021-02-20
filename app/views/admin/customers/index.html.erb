@@ -14,19 +14,19 @@
           <th>メールアドレス</th>
           <th>ステータス</th>
         <tr>
-        <% @customer.each do |customer| %>
+        <% @customers.each do |customer| %>
             <tr>
               <td><%= customer.id %></td>
-              <td><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id) %></td>
+              <td><%= link_to customer.last_name+" ("+customer.first_name+")", admin_customer_path(customer.id) %></td>
               <td><%= customer.email %></td>
               <td>
-                <% if customer.validation == true %>
-    			  <%= "有効" %>
-    			<% else %>
-    			  <%= "退会" %>
-    			<% end %>
+                <% if customer.is_deleted == false %>
+    			        <%= "有効" %>
+    			      <% else %>
+    			        <%= "退会" %>
+    			      <% end %>
               </td>
-            <tr>
+            </tr>
         <% end %>
       </table>
     </div>
@@ -35,7 +35,7 @@
       <!--kaminariのページネーション-->
   <div class="row">
     <div class="col-xs-9 col-xs-offset-3">
-      <%= paginate @customers %>
+      <%# paginate @customers %>
     </div>
   </div>
 
