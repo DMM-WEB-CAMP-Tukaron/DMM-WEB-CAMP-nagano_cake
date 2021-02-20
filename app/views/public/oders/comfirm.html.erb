@@ -3,7 +3,6 @@
     <div class="col-md-8 offset-md-1">
       <h1>注文情報確認</h1>
       <table class=“table”, display: block>
-        <% @oder_item.each do |addre| %>
         <thead>
           <tr>
             <th>
@@ -16,7 +15,7 @@
               小計
             </th>
           </tr>
-          <% @oder_item.each do |addre| %>
+          <% @oder_item.each do |oder_item| %>
           <tr>
             <th>
               <%= attachment_image_tag sweet, :image, :fill, 150, 150, format: 'jpeg' %>
@@ -28,7 +27,7 @@
               <%= oder_item.amount %>
             </th>
             <th>
-              <%= oder_item.amount * oder_item.price %>
+              <%= oder_item.amount * oder_item.price * 1.1 %>
             </th>
           </tr>
         </thead>
