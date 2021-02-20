@@ -4,7 +4,7 @@
       <h1>ジャンル一覧・追加</h1>
       <br>
       <div class="form-horizontal" role="form">
-        <%= form_with model: @genre, url: admin_genres_path do |f| %>
+        <%= form_for(@genre, url: admin_genres_path) do |f| %>
           <div class="form-group">
             <div class="col-xs-8">
               <!--ジャンル名の入力フォーム-->

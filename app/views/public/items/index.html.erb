@@ -3,7 +3,7 @@
   <% @items.each do |item| %>
     <table class="col-md-6">
       <tr>
-        <td><%= attachment_image_tag sweet, :image, :fill, 150, 150, format: 'jpeg' %></td>
+        <td><%= attachment_image_tag item, :image, :fill, 150, 150, format: 'jpeg' %></td>
       </tr>
       <tr>
         <td><%= item.name %></td>
