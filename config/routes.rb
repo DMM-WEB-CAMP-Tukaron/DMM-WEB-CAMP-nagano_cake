@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
     resources :oders, only:[:new, :create, :index, :show]
     post 'comfirm' => 'oders#comfirm'
-    post 'complete' => 'oders#complete'
+    get 'complete' => 'oders#complete'
   end
 
 end
