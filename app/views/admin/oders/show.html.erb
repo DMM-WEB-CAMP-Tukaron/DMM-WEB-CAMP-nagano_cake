@@ -1,2 +1,17 @@
 <h1>注文履歴詳細(admin)</h1>
 
+<%= "購入者  :" %>        <%= @oder_detail.customer.last_name+@oder_detail.customer.first_name %><br>
+<%= "注文日時　：" %>     <%= @oder_detail.created_at %><br>
+<%= "配送先　：" %>       <%= @oder_detail.delivery_postal+" "+@oder_detail.postal_address+" "+@oder_detail.delivery_name %><br>
+<%= "支払い方法　："%>    <%= @oder_detail.billing_amount %><br>
+<%= form_with model: @oder_detail, url: admin_oder_path(@oder_detail.id), local:true do |f| %>
+<%= "注文ステータス　："%><%= f.select :status,Oder.statuses.keys.to_a, {} %>
+<%= f.submit %>
+<% end %>
+<%= @oder_detail.payment %>
+
+
+<%= @oder_detail.oder_items.each do |items| %>
+<%= items.item_id %>
+<% end %>
+
