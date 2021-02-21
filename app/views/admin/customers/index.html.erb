@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <h3 class = "bg-light">会員一覧</h3>
+      <h3 class = "bg-primary">会員一覧</h3>
     </div>
   </div>
 
@@ -17,13 +17,13 @@
         <% @customers.each do |customer| %>
             <tr>
               <td><%= customer.id %></td>
-              <td><%= link_to customer.last_name+" ("+customer.first_name+")", admin_customer_path(customer.id) %></td>
+              <td><%= link_to customer.last_name+" "+customer.first_name+" ", admin_customer_path(customer.id) %></td>
               <td><%= customer.email %></td>
               <td>
                 <% if customer.is_deleted == false %>
-    			        <%= "有効" %>
+    			        <p class="text-success"><%= "有効" %></p>
     			      <% else %>
-    			        <%= "退会" %>
+    			        <p class="text-muted"><%= "退会" %></p>
     			      <% end %>
               </td>
             </tr>
@@ -32,11 +32,11 @@
     </div>
   </div>
   
-      <!--kaminariのページネーション-->
-  <div class="row">
+  <!--kaminariのページネーション-->
+  <div class=“row”>
     <div class="col-xs-9 col-xs-offset-3">
+      <ul class="pagination justify-content-center">
+      <%= paginate @customers %>
+      </ul>
     </div>
   </div>
-
-  
-</div>

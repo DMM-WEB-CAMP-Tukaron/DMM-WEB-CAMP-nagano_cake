@@ -1,18 +1,69 @@
-<h1 class = "bg-light" >会員情報詳細</h1>
+<div class='container'>
+  <div class='row'>
+    <h4 class = bg-light><%= @customer.last_name%> <%= @customer.first_name%> さんの会員詳細</h4>
+  </div>
+</div>
 
-  <%= @customer.id %>
-  <%= @customer.last_name %>
-  <%= @customer.last_name_kana %>
-  <%= @customer.first_name %>
-  <%= @customer.first_name_kana %>
-  <%= @customer.postal_code %>
-  <%= @customer.address %>
-  <%= @customer.telephone_number %>
-  <%= @customer.email %>
-  <% if @customer.is_deleted == false %>
-    <%= "有効" %>
-  <% else %>
-    <%= "退会" %>
-  <% end %>
 
-  <%= link_to "編集する", edit_admin_customer_path(@customer)%>
+<div class='container'>      
+  <div class='row'>
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr>
+          <td> <h5>顧客ID</h5> </td>
+          <td> <%= @customer.id %>
+            <div class="btn btn-default" style="background-color: red;">
+              <% if @customer == true %>
+                <%= "有効" %>
+              <% else %>
+                <%= "退会済み" %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+          
+        <tr>
+          <td> <h5>氏名</h5>  </td>
+          <td> <%= "#{@customer.last_name}　#{@customer.first_name}" %> </td>
+        </tr>
+          
+        <tr>
+          <td> <h5>フリガナ</h5>  </td>
+          <td> <%= "#{@customer.last_name_kana}　#{@customer.first_name_kana}" %> </td>
+        </tr>
+          
+        <tr>
+          <td> <h5>郵便番号</h5>  </td>
+          <td> <%= @customer.postal_code%> </td>
+        </tr>
+          
+        <tr>
+          <td> <h5>住所</h5>  </td>
+          <td> <%= @customer.address %> </td>
+        </tr>
+          
+        <tr>
+          <td> <h5>電話番号</h5> </td>
+          <td> <%= @customer.telephone_number%> </td>
+        </tr>
+          
+        <tr>
+          <td> <h5>メールアドレス</h5>  </td>
+          <td> <%= @customer.email%> </td>
+        </tr>
+      </tbody>
+        
+      <tfoot></tfoot>
+    </table>    
+  </div>
+
+  <div class='row'>
+    <div class=center>
+      <%= link_to '編集する', edit_admin_customer_path(@customer.id), class: 'btn btn-default' %>
+
+      <%= link_to '注文履歴一覧を見る', admin_customers_path(user_id: @customer.id), class: 'btn btn-default' %>
+    </div>
+  </div>
+
+</div>
