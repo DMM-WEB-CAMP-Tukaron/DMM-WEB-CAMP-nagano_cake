@@ -10,11 +10,16 @@
            <h2><%= @item.name %></h2>
            <p><%= @item.introduction %></p>
            <p>¥<%= (@item.price * 1.1).floor %>(税込み)</p>
-           <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-            <%= f.select :amount, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: "選択して下さい", class: '' , required: true %>
-            <%= f.hidden_field :item_id, :value => @item.id %>
-            <%= f.submit 'カートに入れる', class: 'btn btn-primary btn-sm' %>
-          <% end %>
+
+           <% if customer_signed_in? && @item.is_active == "販売中" %>
+             <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+              <%= f.select :amount, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: "選択して下さい", class: '' , required: true %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.submit 'カートに入れる', class: 'btn btn-primary btn-sm' %>
+            <% end %>
+          <% elsif customer_signed_in? && @item.is_active == "販売停止"%>
+      				sold out
+      		<% end %>
         </div>
       </div>
     </div>
