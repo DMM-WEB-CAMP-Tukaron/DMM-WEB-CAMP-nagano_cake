@@ -4,9 +4,13 @@
       <h1>注文情報確認</h1>
       <table class=“table”, display: block>
         <thead>
+          <%= form_with model: @oders, url: complete_path, local:true do |f| %>
           <tr>
             <th>
-              短歌（税込）
+              商品名
+            </th>
+            <th>
+              単価（税込）
             </th>
             <th>
               数量
@@ -15,32 +19,53 @@
               小計
             </th>
           </tr>
-          <% @oder_item.each do |oder_item| %>
+          <% @cart_items.each do |cart_item| %>
           <tr>
             <th>
-              <%= attachment_image_tag sweet, :image, :fill, 150, 150, format: 'jpeg' %>
+              <%= attachment_image_tag cart_item.item, :image, :fill, 150, 150, format: 'jpeg' %>
+              <%= cart_item.item.name %>
             </th>
             <th>
-              <%= oder_item.price %>
+              <%= cart_item.item.price %>円
             </th>
             <th>
-              <%= oder_item.amount %>
+              <%= cart_item.amount %>
             </th>
             <th>
-              <%= oder_item.amount * oder_item.price * 1.1 %>
+              <%= cart_item.amount * cart_item.item.price * 1.1 %>
             </th>
           </tr>
         </thead>
-        <% end %>
+          <% end %>
       </table>
-      <table class=“table”, display: block>
+<table class=“table”, display: block>
+        <!--初期値-->
+        <% @sum = 0 %>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+           <td>#価格
+             <%= cart_item.item.price %>
+           </td>
+           <td>#個数
+             <%= cart_item.amount %>
+           </td>
+           <td>#小計
+               <%= cart_item.item.price * cart_item.amount %>
+           </td>
+           <td>#初期値に小計を足し算し、更新する
+           <% @sum += cart_item.item.price * cart_item.amount %>
+           </td>
+          </tr>
+          <% end %>
+          #合計金額
+         <%= @sum %>円
         <thead>
           <tr>
             <th>
               送料
             </th>
             <th>
-              <%= @oder.shipping %>
+              <%= @oder.shipping = 800 %>
             </th>
           </tr>
           <tr>
@@ -48,7 +73,7 @@
               商品合計
             </th>
             <th>
-              <%= @oder.item_sum %>
+              <%= @sum %>
             </th>
           </tr>
           <tr>
@@ -56,12 +81,20 @@
               御請求額
             </th>
             <th>
-              <%= @oder.payment %>
+              <%= @oder.shipping + @sum %>
             </th>
           </tr>
         </thead>
       </table>
       <h2>支払い方法</h2>
+      <%= @oder.billing_amount %>
+
+      <h2>お届け先</h2>
+      <%= @oder.delivery_postal %>
+      <%= @oder.postal_address %>
+      <%= @oder.delivery_name %>
+      <%= f.submit '注文を確定させる' %>
+      <% end %>
     </div>
   </div>
 </div>

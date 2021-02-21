@@ -20,7 +20,7 @@
             <tbody>
               <!--自宅-->
               <tr>
-                <%= radio_button_tag :oder_address_type, "ご自身の住所", checked: true %>
+                <%= radio_button_tag :oder_address_type, 0, checked: true %>
                 <%= f.label(:oder_address, "ご自身の住所") %>
                 <p class="customer_address">
                   〒<%= current_customer.postal_code %> <%= current_customer.address %><br>
@@ -29,7 +29,7 @@
               </tr>
               <!--登録した住所を選べるよ-->
               <tr>
-                <%= radio_button_tag :oder_address_type, "登録済住所から選択" %>
+                <%= radio_button_tag :oder_address_type, 1 %>
                 <%= f.label(:oder_address, "登録済住所から選択") %>
                 <p class="registered-address">
                   <%= f.collection_select :addre_id, current_customer.addres.all, :id, :address_select %>
@@ -37,7 +37,7 @@
               </tr>
               <!--新しい住所を登録するよ-->
               <tr>
-                <%= radio_button_tag :oder_address_type, "新しい住所を登録する" %>
+                <%= radio_button_tag :oder_address_type, 2 %>
                 <%= f.label(:oder_address, "新しい住所を登録する") %>
                 <p class="registered-address">
                   郵便番号（ハイフンなし）<%= f.text_field :delivery_postal %><br>
