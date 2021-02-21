@@ -4,7 +4,7 @@
       <h1>注文情報確認</h1>
       <table class=“table”, display: block>
         <thead>
-          <%= form_with model: @oders, url: complete_path, local:true do |f| %>
+          <%= form_with model: @oder, url: oders_path, local:true do |f| %>
           <tr>
             <th>
               商品名
@@ -43,6 +43,16 @@
         <% @sum = 0 %>
           <% @cart_items.each do |cart_item| %>
           <tr>
+            <th>
+              送料
+            </th>
+            <th>
+
+            </th>
+          </tr>
+
+
+          <tr>
            <td>#価格
              <%= cart_item.item.price %>
            </td>
@@ -62,6 +72,8 @@
         <thead>
           <tr>
             <th>
+
+
               送料
             </th>
             <th>
@@ -93,6 +105,14 @@
       <%= @oder.delivery_postal %>
       <%= @oder.postal_address %>
       <%= @oder.delivery_name %>
+
+      <%= f.hidden_field :delivery_postal, :value => @oder.delivery_postal %>
+      <%= f.hidden_field :postal_address, :value => @oder.postal_address %>
+      <%= f.hidden_field :delivery_name, :value => @oder.delivery_name %>
+      <%= f.hidden_field :billing_amount, :value => @oder.billing_amount %>
+      <%= f.hidden_field :payment, :value => (@oder.shipping + @sum) %>
+      <%= f.hidden_field :shipping, :value => @oder.shipping  %>
+
       <%= f.submit '注文を確定させる' %>
       <% end %>
     </div>

@@ -1,0 +1,53 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h1>注文履歴一覧</h1>
+      <table class=“table”, display: block>
+        <thead>
+          <% @oders.each do |oder| %>
+          <tr>
+            <th>
+              注文尾
+            </th>
+            <th>
+              配送先
+            </th>
+            <th>
+              注文商品
+            </th>
+            <th>
+              支払い金額
+            </th>
+            <th>
+              ステータス
+            </th>
+            <th>
+              注文詳細
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <!--注文尾-->
+              <%= oder.created_at.strftime('%Y/%m/%d') %>
+            </th>
+            <th>
+              <!--配送先-->
+              <%= oder.delivery_postal %>
+              <%= oder.postal_address %>
+              <%= oder.delivery_name %>
+            </th>
+            <th>
+              <!--注文商品-->
+              <%#= oder.item.name %>
+            </th>
+            <th>
+              <!--支払い金額-->
+
+            </th>
+          </tr>
+          <% end %>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
