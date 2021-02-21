@@ -27,3 +27,5 @@ Things you may want to cover:
 Oder ←　に統一
 
 リモートリポジトリ変更しました。
+
+yosi
