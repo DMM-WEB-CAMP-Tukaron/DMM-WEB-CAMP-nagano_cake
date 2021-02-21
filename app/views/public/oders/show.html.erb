@@ -1,0 +1,29 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h1>注文履歴一覧</h1>
+      <table class=“table”, display: block>
+        <thead>
+          <tr>
+            <th>
+              注文日
+            </th>
+            <th>
+              <%#= @oder.created_at.strftime('%Y/%m/%d') %>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              配送先
+            </th>
+            <th>
+              <%= @oder.delivery_postal %>
+              <%= @oder.postal_address %>
+              <%= @oder.delivery_name %>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ class Public::OdersController < ApplicationController
     @oders = Oder.all
     @oder = Oder.new
     @addre = Addre.all
+    @oder_items = CartItem.all
   end
 
   def new
@@ -46,9 +47,13 @@ class Public::OdersController < ApplicationController
   def complete
   end
 
+  def show
+    @oder = Oder.find(params[:id])
+  end
+
   private
   def oder_params
-    params.require(:oder).permit(:customer_id, :delivery_postal, :postal_address, :delivery_name, :shipping, :payment, :billing_amount, :status )
+    params.require(:oder).permit(:customer_id, :delivery_postal, :postal_address, :delivery_name, :shipping, :payment, :billing_amount, :status, :created_at )
   end
 
 end

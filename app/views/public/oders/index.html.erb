@@ -4,10 +4,10 @@
       <h1>注文履歴一覧</h1>
       <table class=“table”, display: block>
         <thead>
-          <% @oders.each do |oder| %>
+
           <tr>
             <th>
-              注文尾
+              注文日
             </th>
             <th>
               配送先
@@ -25,9 +25,10 @@
               注文詳細
             </th>
           </tr>
+          <% @oders.each do |oder| %>
           <tr>
             <th>
-              <!--注文尾-->
+              <!--注文-->
               <%= oder.created_at.strftime('%Y/%m/%d') %>
             </th>
             <th>
@@ -36,13 +37,25 @@
               <%= oder.postal_address %>
               <%= oder.delivery_name %>
             </th>
+
             <th>
               <!--注文商品-->
-              <%#= oder.item.name %>
+              <% @oder_items.each do |oder_item| %>
+                <li><%= oder_item.item.name %></li>
+              <% end %>
             </th>
             <th>
               <!--支払い金額-->
+              <%= oder.payment %>
+            </th>
+            <th>
+              <!--ステータス-->
+              <%= oder.status %>
+            </th>
 
+            <th>
+              <!--注文詳細-->
+              <%= link_to '表示する', oder_path(@oders) %>
             </th>
           </tr>
           <% end %>
