@@ -7,10 +7,20 @@
 <%= "注文ステータス　："%><%= f.select :status,Oder.statuses.keys.to_a, {} %>
 <%= f.submit %>
 <% end %>
-<%= @oder_detail.payment %>
 
 
-<%= @oder_detail.oder_items.each do |items| %>
-<%= items.item_id %>
+
+<% @oder_detail.oder_items.each do |item| %>
+  <%= "商品名　：" %>      <%= item.item.name %>
+  <%= "単価(税込み)" %>    <%= (item.item.price*1.1) %>
+  <%= "数量" %>            <%= item.amount %>
+  <%= "小計" %>            <%= (item.amount*item.item.price*1.1) %>
+  <%= form_with model: item, url: admin_oder_detail_path(item.id), local:true do |f| %>
+    <%= "制作ステータス" %><%= f.select :making_status,OderItem.making_statuses.keys.to_a, {} %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
 
+<%= "商品合計　：" %><%= (@oder_detail.payment-@oder_detail.shipping) %><%= "円" %><br>
+<%= "送料　：" %><%= @oder_detail.shipping %><%= "円" %><br>
+<%= "請求額合計　："%><%= @oder_detail.payment %><%= "円" %>
