@@ -2,8 +2,6 @@ class Public::OdersController < ApplicationController
 
   def index
     @oders = Oder.all
-    @addre = Addre.all
-    @oder_items = OderItem.all
   end
 
   def new
@@ -61,10 +59,6 @@ class Public::OdersController < ApplicationController
 
   private
   def oder_params
-    params.require(:oder).permit(:customer_id, :delivery_postal, :postal_address, :delivery_name, :shipping, :payment, :billing_amount, :status, :created_at )
-  end
-
-  def set_order
     params.require(:oder).permit(:customer_id, :delivery_postal, :postal_address, :delivery_name, :shipping, :payment, :billing_amount, :status, :created_at )
   end
 
