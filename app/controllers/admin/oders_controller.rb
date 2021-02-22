@@ -1,5 +1,5 @@
 class Admin::OdersController < ApplicationController
-
+#   before_action :authenticate_admin!
   def show
     @oder_detail = Oder.find(params[:id])
   end
@@ -7,6 +7,10 @@ class Admin::OdersController < ApplicationController
   def update
     @oder_detail = Oder.find(params[:id])
     if @oder_detail.update(oder_detail_params)
+      @oder_items = @oder_detail.oder_items
+      if @oder_detail.status == "入金確認"
+        @oder_items.update_all(making_status:"制作待ち")
+      end
       redirect_to admin_homes_top_path(@oder_detail)
     end
   end

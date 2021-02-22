@@ -27,7 +27,8 @@
               <%= cart_item.item.name %>
             </th>
             <th>
-              <%= cart_item.item.price %>円
+              <!--商品単価（税込）-->
+              <%= (cart_item.item.price * 1.1).floor %>円
             </th>
             <th>
               <%= cart_item.amount %>

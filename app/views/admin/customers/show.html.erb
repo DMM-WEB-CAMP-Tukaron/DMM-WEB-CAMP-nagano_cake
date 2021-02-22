@@ -6,7 +6,7 @@
 </div>
 
 <br>
-<div class='container'>      
+<div class='container'>
   <div class='row'>
     <table>
       <thead></thead>
@@ -15,40 +15,40 @@
           <td> <h6>会員ID</h6> </td>
           <td> <%= @customer.id %></td>
         </tr>
-          
+
         <tr>
           <td> <h6>氏名</h6>  </td>
           <td> <%= "#{@customer.last_name}　#{@customer.first_name}" %> </td>
         </tr>
-          
+
         <tr>
           <td> <h6>フリガナ</h6>  </td>
           <td> <%= "#{@customer.last_name_kana}　#{@customer.first_name_kana}" %> </td>
         </tr>
-          
+
         <tr>
           <td> <h6>郵便番号</h6>  </td>
           <td> <%= @customer.postal_code%> </td>
         </tr>
-          
+
         <tr>
           <td> <h6>住所</h6>  </td>
           <td> <%= @customer.address %> </td>
         </tr>
-          
+
         <tr>
           <td> <h6>電話番号</h6> </td>
           <td> <%= @customer.telephone_number%> </td>
         </tr>
-          
+
         <tr>
           <td> <h6>メールアドレス</h6>  </td>
           <td> <%= @customer.email%> </td>
         </tr>
-        
+
         <tr>
           <td> <h6>会員ステータス</h6>  </td>
-          <td> 
+          <td>
             <% if @customer.is_deleted == false %>
     			    <p class="text-success"><%= "有効" %></p>
     			  <% else %>
@@ -57,17 +57,16 @@
           </td>
         </tr>
       </tbody>
-        
+
       <tfoot></tfoot>
-    </table>    
+    </table>
   </div>
 
   <br>
   <div class='container'>
     <div class='row'>
       <%= link_to '編集する', edit_admin_customer_path(@customer.id), class: 'btn btn-success' %>
-  
-      <%= link_to '注文履歴一覧を見る', admin_customers_path(customer_id: @customer.id), class: 'btn btn-primary' %>
+      <%= link_to '注文履歴一覧を見る', admin_homes_top_path(@customer.id,sort: 0), class: 'btn btn-primary' %>
     </div>
   </div>
 

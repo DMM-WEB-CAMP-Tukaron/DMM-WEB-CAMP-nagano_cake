@@ -1,4 +1,5 @@
 class Public::OdersController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
     @oders = Oder.all
@@ -22,6 +23,10 @@ class Public::OdersController < ApplicationController
           oder_id: @oder.id)
         @oder_items.save!
       end
+      # 配送先を選ぶページで新規住所だけを登録する
+      current_customer.addres.find_or_create_by(postal_code: @oder.delivery_postal, address: @oder.postal_address, name: @oder.delivery_name)
+      # 注文確定後カート内商品を全て削除する
+      current_customer.cart_items.destroy_all
     end
     redirect_to complete_path
   end

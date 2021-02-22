@@ -14,11 +14,15 @@
           </tr>
         </thead>
         <tbody>
-            <% @oders.each do |oder| %>
+          <% @oders.each do |oder| %>
+            <% @sum = 0 %>
             <tr>
               <td><%= link_to oder.created_at, admin_oder_path(oder) %></td>
               <td><%= oder.customer.last_name+""+oder.customer.first_name %></td>
-              <td></td>
+              <td><% oder.oder_items.each do |item| %>
+                  <% @sum = (@sum+item.amount) %>
+                  <% end %>
+                  <%= @sum %></td>
               <td><%= oder.status %></td>
             </tr>
           <% end %>
