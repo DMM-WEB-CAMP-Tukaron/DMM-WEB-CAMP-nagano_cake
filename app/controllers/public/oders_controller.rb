@@ -2,9 +2,8 @@ class Public::OdersController < ApplicationController
 
   def index
     @oders = Oder.all
-    @oder = Oder.new
     @addre = Addre.all
-    @oder_items = CartItem.all
+    @oder_items = OderItem.all
   end
 
   def new
@@ -16,7 +15,16 @@ class Public::OdersController < ApplicationController
   def create
     @oder = Oder.new(oder_params)
     @oder.customer_id = current_customer.id
-    @oder.save
+    if @oder.save!
+       current_customer.cart_items.each do |cart_item|
+        @oder_items = OderItem.new(
+          item_id: cart_item.item.id,
+          amount: cart_item.amount,
+          price: cart_item.item.price,
+          oder_id: @oder.id)
+        @oder_items.save!
+      end
+    end
     redirect_to complete_path
   end
 
@@ -53,6 +61,10 @@ class Public::OdersController < ApplicationController
 
   private
   def oder_params
+    params.require(:oder).permit(:customer_id, :delivery_postal, :postal_address, :delivery_name, :shipping, :payment, :billing_amount, :status, :created_at )
+  end
+
+  def set_order
     params.require(:oder).permit(:customer_id, :delivery_postal, :postal_address, :delivery_name, :shipping, :payment, :billing_amount, :status, :created_at )
   end
 
