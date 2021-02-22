@@ -1,26 +1,82 @@
+<div class="container">
+  <div class="row m-5">
+    
+  </div>
+  <div class="row">
+    <div class="col-">
+      <table class="table">
+        <tr>
+          <th><%= "購入者" %></th>
+          <td><%= @oder_detail.customer.last_name+@oder_detail.customer.first_name %></td>
+        </tr>
+        <tr>
+          <th><%= "注文日" %></th>
+          <td><%= @oder_detail.created_at %><br></td>
+        </tr>
+        <tr>
+          <th><%= "配送先" %></th>
+          <td><%= @oder_detail.delivery_postal+" "+@oder_detail.postal_address+" "+@oder_detail.delivery_name %></td>
+        </tr>
+        <tr>
+          <th><%= "支払い方法" %></th>
+          <td><%= @oder_detail.billing_amount %><br></td>
+        </tr>
+        <tr>
+          <%= form_with model: @oder_detail, url: admin_oder_path(@oder_detail.id), local:true do |f| %>
+          <th><%= "注文ステータス" %></th>
+          <td><%= f.select :status,Oder.statuses.keys.to_a, {} %>
+              <%= f.submit "更新",class: 'btn btn-success' %>
+              <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-<%= "購入者  :" %>        <%= @oder_detail.customer.last_name+@oder_detail.customer.first_name %><br>
-<%= "注文日時　：" %>     <%= @oder_detail.created_at %><br>
-<%= "配送先　：" %>       <%= @oder_detail.delivery_postal+" "+@oder_detail.postal_address+" "+@oder_detail.delivery_name %><br>
-<%= "支払い方法　："%>    <%= @oder_detail.billing_amount %><br>
-<%= form_with model: @oder_detail, url: admin_oder_path(@oder_detail.id), local:true do |f| %>
-<%= "注文ステータス　："%><%= f.select :status,Oder.statuses.keys.to_a, {} %>
-<%= f.submit %>
-<% end %>
-
-
-
-<% @oder_detail.oder_items.each do |item| %>
-  <%= "商品名　：" %>      <%= item.item.name %>
-  <%= "単価(税込み)" %>    <%= (item.item.price*1.1) %>
-  <%= "数量" %>            <%= item.amount %>
-  <%= "小計" %>            <%= (item.amount*item.item.price*1.1) %>
-  <%= form_with model: item, url: admin_oder_detail_path(item.id), local:true do |f| %>
-    <%= "制作ステータス" %><%= f.select :making_status,OderItem.making_statuses.keys.to_a, {} %>
-    <%= f.submit %>
-  <% end %>
-<% end %>
-
-<%= "商品合計　：" %><%= (@oder_detail.payment-@oder_detail.shipping) %><%= "円" %><br>
-<%= "送料　：" %><%= @oder_detail.shipping %><%= "円" %><br>
-<%= "請求額合計　："%><%= @oder_detail.payment %><%= "円" %>
+  <div class="row">
+    <div class="col-md-">
+      <table class="table">
+        <thead class="table bg-light">
+          <th><%= "商品名" %></th>
+          <th><%= "単価（税込み）" %></th>
+          <th><%= "数量" %></th>
+          <th><%= "小計" %></th>
+          <th><%= "制作ステータス" %></th>
+          <th></th>
+        </thead>
+        <% @oder_detail.oder_items.each do |item| %>
+          <tr>
+            <td><%= item.item.name %></td>
+            <td><%= (item.item.price*1.1) %></td>
+            <td><%= item.amount %></td>
+            <td><%= (item.amount*item.item.price*1.1) %></td>
+            <td><%= form_with model: item, url: admin_oder_detail_path(item.id), local:true do |f| %>
+                  <%= "制作ステータス" %><%= f.select :making_status,OderItem.making_statuses.keys.to_a, {} %>
+            </td>
+            <td><%= f.submit "更新",class: 'btn btn-success'%>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col">
+      <div class="float-right">
+        <table class="table">
+          <tr>
+            <th><%= "商品合計" %></th>
+            <td><%= (@oder_detail.payment-@oder_detail.shipping) %><%= "円" %></td>
+          </tr>
+          <tr>
+            <th><%= "送料" %></th>
+            <td><%= @oder_detail.shipping %><%= "円" %></td>
+          </tr>
+          <tr>
+            <th><%= "請求額合計"%></th>
+            <td><%= @oder_detail.payment %><%= "円" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
