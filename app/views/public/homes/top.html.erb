@@ -13,26 +13,30 @@
   </div>
  </div>
 </div>
-
-
-
-<h1>新着情報</h1>
-<div class="container pull-left table-responsive">
- <table class="table", display: block>
-    <% @items.each do |item| %>
-     <thead>
-      <tr>
-       <%= attachment_image_tag(item, :image, :fill, 100, 100) %>
-      </tr><br>
-      <tr>
-       <%= item.name %>
-      </tr><br>
-      <tr>
-       ¥<%= item.price %>
-      </tr><br>
-     </thead>
-   <% end %>
- </table>
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+     <h1>新着情報</h1>
+     <div class="row">
+      <% @items.each do |item| %>
+          <table class="col-md-3">
+            <tr>
+              <td>
+                <%= link_to item_path(item.id) do %>
+                 <%= attachment_image_tag item, :image, :fill, 150, 150, format: 'jpeg' %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td><%= item.name %></td>
+            </tr>
+            <tr>
+              <td>¥<%= (item.price * 1.1).floor %>(税込み)</td>
+            </tr>
+          </table>
+        <% end %>
+     </div>
+   </div>
+ </div>
 </div>
-
 <%= link_to '全ての商品を見る', admin_items_path %>
