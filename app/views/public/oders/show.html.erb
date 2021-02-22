@@ -103,7 +103,7 @@
             </th>
             <th>
               <!--小計-->
-              <%= (oder_item.item.price * oder_item.amount) %>
+              <%= (oder_item.item.price * oder_item.amount * 1.1).floor %>
             </th>
           </tr>
           <% end %>
