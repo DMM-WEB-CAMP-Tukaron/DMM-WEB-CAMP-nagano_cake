@@ -5,13 +5,14 @@
       <br>
       <div class="form-horizontal" role="form">
         <%= form_for(@genre, url: admin_genre_path(@genre.id))do |f| %>
-        <div class="form-group">
-          <!--ジャンル名入力-->
-          <%= f.label :name, "ジャンル"%>
-          <%= f.text_field :name, autofocus: true %>
-          <!--追加ボタン -->
-          <%= f.submit "変更を保存する", class: "btn btn-primary" %>
-        </div>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form-group">
+            <!--ジャンル名入力-->
+            <%= f.label :name, "ジャンル"%>
+            <%= f.text_field :name, autofocus: true %>
+            <!--追加ボタン -->
+            <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+          </div>
         <% end %>
       </div>
     </div>
