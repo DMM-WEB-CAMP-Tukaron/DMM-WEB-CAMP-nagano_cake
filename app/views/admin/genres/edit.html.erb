@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
        <%= notice %>
-      <h1 class = "bg-secondary">ジャンル編集</h1>
+      <h3 class = "bg-light">ジャンル編集</h3>
       <br>
       <div class="form-horizontal" role="form">
         <%= form_for(@genre, url: admin_genre_path(@genre.id))do |f| %>
@@ -13,7 +13,7 @@
             <%= f.label :name, "ジャンル名　　　"%>
             <%= f.text_field :name, autofocus: true %>
             <!--追加ボタン -->
-            <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+            <%= f.submit "変更を保存する", class: "btn btn-success" %>
           </div>
         <% end %>
       </div>

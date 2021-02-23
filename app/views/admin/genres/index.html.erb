@@ -1,22 +1,22 @@
 <br>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-12">
        <%= notice %>
-      <h1 class = bg-light>ジャンル一覧・追加</h1>
+      <h3 class = bg-light>ジャンル一覧・追加</h3>
       <br>
       <div class="form-horizontal" role="form">
         <%= form_for(@genre, url: admin_genres_path) do |f| %>
         
           <%= render 'layouts/error_messages', model: f.object %>
           <div class="form-group">
-            <div class="col-xs-8">
+            <div class="col-md-8">
               <!--ジャンル名の入力フォーム-->
               <strong><%= f.label :name, "ジャンル名"%></strong>
               <%= f.text_field :name, autofocus: true %>
 
               <!--新規登録ボタン-->
-              <%= f.submit "新規登録", class: "btn btn-primary" %>
+              <%= f.submit "新規登録", class: "btn btn-success" %>
             </div>
           </div>
         <% end %>
@@ -33,7 +33,7 @@
                 <td><%= genre.name %></td>
                 <td>
                 </td>
-                <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-primary"  %></td>
+                <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success"  %></td>
               </tr>
             <% end %>
           </table>
