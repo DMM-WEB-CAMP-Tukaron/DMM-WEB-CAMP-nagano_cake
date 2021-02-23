@@ -2,7 +2,7 @@ class Public::OdersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @oders = Oder.all
+    @oders = current_customer.oders
   end
 
   def new
