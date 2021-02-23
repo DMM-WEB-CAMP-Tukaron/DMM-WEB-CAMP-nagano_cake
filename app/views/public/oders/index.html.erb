@@ -1,9 +1,11 @@
 <div class="container px-5 px-sm-0">
+  <div class="row m-5 pl-5">
+    <h1 class="bg-light">注文履歴一覧</h1>
+  </div>
   <div class="row">
-    <div class="col-md-8 offset-md-1">
-      <h1>注文履歴一覧</h1>
-      <table class=“table”, display: block>
-        <thead>
+    <div class="col">
+      <table class="table table-bordered">
+        <thead class="bg-light">
           <tr>
             <th>
               注文日
@@ -24,39 +26,41 @@
               注文詳細
             </th>
           </tr>
-          <% @oders.each do |oder| %>
-          <tr>
-            <th>
-              <!--注文-->
-              <%= oder.created_at.strftime('%Y/%m/%d') %>
-            </th>
-            <th>
-              <!--配送先-->
-              <%= oder.delivery_postal %>
-              <%= oder.postal_address %>
-              <%= oder.delivery_name %>
-            </th>
-            <th>
-              <!--注文商品-->
-              <% oder.oder_items.each do |oder_item| %>
-                  <li><%= oder_item.item.name %></li>
-              <% end %>
-            </th>
-            <th>
-              <!--支払い金額-->
-              <%= oder.payment %>
-            </th>
-            <th>
-              <!--ステータス-->
-              <%= oder.status %>
-            </th>
-            <th>
-              <!--注文詳細-->
-              <%= link_to '表示する', oder_path(oder) %>
-            </th>
-          </tr>
-          <% end %>
         </thead>
+        <% @oders.each do |oder| %>
+          <tbody>
+            <tr>
+              <th class="align-middle">
+                <!--注文-->
+                <%= oder.created_at.strftime('%Y/%m/%d') %>
+              </th>
+              <th class="align-middle">
+                <!--配送先-->
+                〒<%= oder.delivery_postal %><br>
+                <%= oder.postal_address %><br>
+                <%= oder.delivery_name %><br>
+              </th>
+              <th class="align-middle">
+                <!--注文商品-->
+                <% oder.oder_items.each do |oder_item| %>
+                    <li><%= oder_item.item.name %></li>
+                <% end %>
+              </th>
+              <th class="align-middle">
+                <!--支払い金額-->
+                <%= oder.payment %>円
+              </th>
+              <th class="align-middle">
+                <!--ステータス-->
+                <%= oder.status %>
+              </th>
+              <th class="align-middle">
+                <!--注文詳細-->
+                <%= link_to '表示する', oder_path(oder) %>
+              </th>
+            </tr>
+          </tbody>
+        <% end %>
       </table>
     </div>
   </div>

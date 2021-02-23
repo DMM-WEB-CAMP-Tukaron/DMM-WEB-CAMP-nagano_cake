@@ -29,3 +29,11 @@ Oder ←　に統一
 リモートリポジトリ変更しました。
 
 yosi
+
+
+case resource
+    when Admin
+      new_admin_session_path
+    when Customer
+      root_path
+    end
