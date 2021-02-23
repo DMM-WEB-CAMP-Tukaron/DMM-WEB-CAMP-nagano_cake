@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto">
-      <h2>会員編集</h2>
+      <h3>会員編集</h3>
       <%= form_with model: @customer, url: customer_path(@customer), local:true do |f| %>
         <div class="form-group">
           <h4>氏名</h4>
@@ -34,8 +34,8 @@
           <%= f.email_field :email, class: "form-control-file email" %>
         </div>
         <div class="form-group">
-          <%= f.submit '編集内容を保存', class: 'btn btn-secondary' %>
-          <%= link_to '退会', unsubscribe_path, class: "btn btn-outline-secondary" %>
+          <%= f.submit '編集内容を保存', class: 'btn btn-success' %>
+          <%= link_to '退会', unsubscribe_path, class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>

@@ -1,5 +1,5 @@
 class Admin::OderDetailsController < ApplicationController
-#   before_action :authenticate_admin!
+   before_action :authenticate_admin!
   def update
     item = OderItem.find(params[:id])
     if item.update(item_params)
