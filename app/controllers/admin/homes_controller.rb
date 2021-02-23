@@ -5,9 +5,9 @@ class Admin::HomesController < ApplicationController
         when "0"
 
           @customer = Customer.find(params[:format])
-          @oders = @customer.oders
+          @oders = @customer.oders.page(params[:page]).per(10)
         else
-          @oders = Oder.all
+          @oders = Oder.page(params[:page]).per(10)
       end
     end
 end
