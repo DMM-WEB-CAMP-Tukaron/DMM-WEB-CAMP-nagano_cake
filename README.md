@@ -70,8 +70,7 @@ $ rails s -b 0.0.0.0
 
 # 使用言語
 ・HTML&CSS  
-・Ruby  
-・JavaScript  
+・Ruby   
 ・フレームワーク  
 ⚪︎Ruby on Rails (5.2.4)
 
