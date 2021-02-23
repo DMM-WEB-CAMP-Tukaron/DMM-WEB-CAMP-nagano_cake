@@ -19,7 +19,7 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 # 実装機能
 ## 顧客側
 
-|<center>機能名</center>|<center>説明</center>|<center>非ログイン時<br>利用可否</center>|
+|<div style="text-align: center;">機能名</div>|<center>説明</center>|<center>非ログイン時<br>利用可否</center>|
 |:---|:---|:---|
 |ログイン機能|・メールアドレス、パスワードでログインできる。<br>・ログイン時のみ利用できる機能が利用可能になる。|<center>○</center>|
 |ログアウト機能|・ログインしている状態からログアウト状態にする。<br>・ログイン時のみ利用できる機能が利用できなくなる。|<center>×</center>|
