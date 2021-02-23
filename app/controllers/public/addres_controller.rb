@@ -3,7 +3,7 @@ class Public::AddresController < ApplicationController
 
   def index
     @customer = current_customer
-    @addres = @customer.addres
+    @addres = @customer.addres.page(params[:page]).per(3)
     @addre = Addre.new
   end
 
