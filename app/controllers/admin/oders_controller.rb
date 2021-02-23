@@ -1,5 +1,5 @@
 class Admin::OdersController < ApplicationController
-#   before_action :authenticate_admin!
+   before_action :authenticate_admin!
   def show
     @oder_detail = Oder.find(params[:id])
   end
