@@ -1,9 +1,17 @@
 
 <div class="container">
+  <div class="row m-5 pl-5">
+    <h3 class="bg-light">商品一覧</h3>
+    <div class="col">
+      <div class="float-right">
+        <%= link_to "新規商品登録", new_admin_item_path, class: "btn btn-danger btn-lg" %>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col">
       <table class="table">
-        <thead>
+        <thead class="bg-light">
           <tr>
             <th><%= "商品ID" %></th>
             <th><%= "商品名" %></th>
@@ -28,8 +36,10 @@
           <% end %>
         </tbody>
       </table>
-      <%= link_to "新規商品登録", new_admin_item_path, class: "btn btn-danger btn-lg" %>
     </div>
+  </div>
+  <div class="mx-auto">
+    <%= paginate @items %>
   </div>
 </div>
 
