@@ -2,7 +2,7 @@ class Public::OdersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @oders = current_customer.oders
+    @oders = current_customer.oders.page(params[:page]).per(5)
   end
 
   def new
