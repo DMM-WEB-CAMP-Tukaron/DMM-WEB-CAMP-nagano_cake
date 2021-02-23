@@ -14,8 +14,10 @@
            <% if customer_signed_in? && @item.is_active == "販売中" %>
              <%= form_with model: @cart_item, url: cart_items_path do |f| %>
              <p>数量</p>
-              <%= f.select :amount, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], class: '' , required: true %>
-              <%= f.hidden_field :item_id, :value => @item.id %>
+             <div class="form-group">
+                <%= f.select :amount, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], class: '' , required: true %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+              </div>
               <%= f.submit 'カートに入れる', class: 'btn btn-primary btn-sm' %>
             <% end %>
           <% elsif customer_signed_in? && @item.is_active == "販売停止"%>
