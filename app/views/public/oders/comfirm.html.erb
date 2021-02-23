@@ -1,96 +1,90 @@
 <div class="container px-5 px-sm-0">
+  <%= form_with model: @oder, url: oders_path, local:true do |f| %>
   <div class="row">
-    <div class="col-md-8 offset-md-1">
-      <h1>注文情報確認</h1>
-      <table class=“table”, display: block>
-        <thead>
-          <%= form_with model: @oder, url: oders_path, local:true do |f| %>
+    <div class="col-md-12 offset-md-1">
+      <h2>注文情報確認</h2>
+    </div>
+    <div class="col-7">
+      <table class="table table-bordered">
+        <thead class="bg-light">
           <tr>
-            <th>
-              商品名
-            </th>
-            <th>
-              単価（税込）
-            </th>
-            <th>
-              数量
-            </th>
-            <th>
-              小計
-            </th>
+            <th style="width:40%">商品名</th>
+            <th style="width:20%">単価（税込）</th>
+            <th style="width:20%">数量</th>
+            <th style="width:20%">小計</th>
           </tr>
+        </thead>
           <% @sum = 0 %>
           <% @cart_items.each do |cart_item| %>
-          <tr>
-            <th>
-              <%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, format: 'jpeg' %>
-              <%= cart_item.item.name %>
-            </th>
-            <th>
-              <!--商品単価（税込）-->
-              <%= (cart_item.item.price * 1.1).floor %>円
-            </th>
-            <th>
-              <%= cart_item.amount %>
-            </th>
-            <th>
-              <% sub_total = (cart_item.item.price * cart_item.amount * 1.1).floor %>
-              <% @sum += sub_total %>
-              <%= sub_total %>円
-            </th>
-          </tr>
-        </thead>
-          <% end %>
+        <tr>
+          <th>
+            <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, format: 'jpeg' %>
+            <%= cart_item.item.name %>
+          </th>
+          <!--商品単価（税込）-->
+          <th class="align-middle"><%= (cart_item.item.price * 1.1).floor %></th>
+          <!--数量-->
+          <th class="align-middle"><%= cart_item.amount %></th>
+          <!--小計-->
+          <th class="align-middle">
+            <% sub_total = (cart_item.item.price * cart_item.amount * 1.1).floor %>
+            <% @sum += sub_total %>
+            <%= sub_total %>
+          </th>
+        </tr>
+        <% end %>
       </table>
-<table class=“table”, display: block>
-        <thead>
-          <tr>
-            <th>
-              送料
-            </th>
-            <th>
-              <% @oder.shipping = 800 %>
-              <%= @oder.shipping %>
-            </th>
-          </tr>
-          <tr>
-            <th>
-              商品合計
-            </th>
-            <th>
-              <%= @sum %>円
-            </th>
-          </tr>
-          <tr>
-            <th>
-              請求金額
-            </th>
-          </tr>
-          <tr>
-            <th>
-              <%= @sum + @oder.shipping %>
-            </th>
-          </tr>
-        </thead>
-
+    </div>
+    <div class="col-2">
+      <table class="table table-bordered">
+        <tr>
+          <th class="text-center bg-light">送料</th>
+          <th class="text-center">
+            <% @oder.shipping = 800 %>
+            <%= @oder.shipping %>
+          </th>
+        <tr>
+          <th class="text-center bg-light">商品合計</th>
+          <th class="text-center"><%= @sum %></th>
+        </tr>
+        <tr>
+          <th class="text-center bg-light">請求額</th>
+          <th class="text-center"><%= @sum + @oder.shipping %></th>
+        </tr>
       </table>
-      <h2>支払い方法</h2>
-      <%= @oder.billing_amount %>
-
-      <h2>お届け先</h2>
-      <%= @oder.delivery_postal %>
-      <%= @oder.postal_address %>
-      <%= @oder.delivery_name %>
-
-      <%= f.hidden_field :delivery_postal, :value => @oder.delivery_postal %>
-      <%= f.hidden_field :postal_address, :value => @oder.postal_address %>
-      <%= f.hidden_field :delivery_name, :value => @oder.delivery_name %>
-      <%= f.hidden_field :billing_amount, :value => @oder.billing_amount %>
-      <%= f.hidden_field :payment, :value => (@oder.shipping + @sum) %>
-      <%= f.hidden_field :shipping, :value => @oder.shipping  %>
-
-      <%= f.submit '注文を確定させる' %>
-      <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-">
+      <table class="table table-borderless">
+        <tr>
+          <th>お支払い方法</th>
+          <td><%= @oder.billing_amount %></td>
+        </tr>
+        <tr>
+          <th>お届け先</th>
+          <td>〒<%= @oder.delivery_postal %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= @oder.postal_address %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= @oder.delivery_name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.submit '注文を確定させる', class: 'btn btn-danger btn-lg' %>
+  </div>
+  <!--hidden_field-->
+  <%= f.hidden_field :delivery_postal, :value => @oder.delivery_postal %>
+    <%= f.hidden_field :postal_address, :value => @oder.postal_address %>
+    <%= f.hidden_field :delivery_name, :value => @oder.delivery_name %>
+    <%= f.hidden_field :billing_amount, :value => @oder.billing_amount %>
+    <%= f.hidden_field :payment, :value => (@oder.shipping + @sum) %>
+    <%= f.hidden_field :shipping, :value => @oder.shipping  %>
+  <% end %>
 </div>
