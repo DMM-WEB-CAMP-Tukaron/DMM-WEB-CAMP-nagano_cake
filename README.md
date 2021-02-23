@@ -1,3 +1,6 @@
+DMM WEBCAMPのチーム開発期間で作成したアプリです。<br>
+作成期間：2021/02/10〜2021/02/23
+
 # アプリトップページ
 ![IMG_0969](https://user-images.githubusercontent.com/76044650/108831977-3bcf6780-760e-11eb-8ce4-b4b1baeff20d.JPG)
 
@@ -53,6 +56,8 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 
 # 使用方法
 ## インストール
+
+```ruby:
 $ git clone git@github.com:DMM-WEB-CAMP-Tukaron/DMM-WEB-CAMP-nagano_cake.git (SSH)
 or  
 $ git clone https://github.com/DMM-WEB-CAMP-Tukaron/DMM-WEB-CAMP-nagano_cake.git (HTTPS)  
@@ -61,6 +66,7 @@ $ bundle install
 $ rails db:migrate  
 $ rails db:see  
 $ rails s -b 0.0.0.0
+```
 
 # 使用言語
 ・HTML&CSS  
