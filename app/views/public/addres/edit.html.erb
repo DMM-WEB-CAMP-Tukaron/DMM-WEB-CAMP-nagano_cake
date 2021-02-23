@@ -1,8 +1,27 @@
-<h3>配送先編集</h3>
-
-<%= form_with model:@addre, local:true do |f| %>
-  郵便番号（ハイフンなし）<%= f.text_field :postal_code %><br>
-  住所<%= f.text_field :address %><br>
-  氏名<%= f.text_field :name %><br>
-  <%= f.submit '変更内容を保存' %>
-<% end %>
+<div class="container">
+  <div class="row m-5 pl-5">
+    <h3 class="bg-light">配送先編集</h3>
+  </div>
+  <%= form_with model:@addre, local:true do |f| %>
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <tr>
+            <th>郵便番号（ハイフンなし）</th>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= f.text_field :address, :size=>"60" %></td>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <td><%= f.text_field :name %><br>
+            <td><%= f.submit '変更内容を保存', class: 'btn btn-success'%></td>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>
