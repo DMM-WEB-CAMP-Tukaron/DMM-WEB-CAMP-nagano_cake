@@ -1,5 +1,5 @@
 # アプリトップページ
-![linecamera_shareimage](https://user-images.githubusercontent.com/76044650/108831744-e72bec80-760d-11eb-812a-4466066fb5d8.jpg)
+![IMG_0969](https://user-images.githubusercontent.com/76044650/108831977-3bcf6780-760e-11eb-8ce4-b4b1baeff20d.JPG)
 
 # ながのCAKE
 長野県にある小さな洋菓子店、「ながのCAKE」の商品を通販するためのECサイト。<br>
