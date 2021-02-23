@@ -7,9 +7,7 @@ class Admin::OderDetailsController < ApplicationController
       if item.making_status == "製作中"
         @oder_detail.update(status:"製作中")
       else
-        if @oder_detail.oder_items.exists?(making_status:"着手不可") || @oder_detail.oder_items.exists?(making_status:"制作待ち") || @oder_detail.oder_items.exists?(making_status:"製作中")
-          @oder_detail.update(status:"製作中")
-        else
+        unless @oder_detail.oder_items.exists?(making_status:"着手不可") || @oder_detail.oder_items.exists?(making_status:"制作待ち") || @oder_detail.oder_items.exists?(making_status:"製作中")
           @oder_detail.update(status:"発送準備中")
         end
       end
