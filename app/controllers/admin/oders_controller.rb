@@ -11,7 +11,7 @@ class Admin::OdersController < ApplicationController
       if @oder_detail.status == "入金確認"
         @oder_items.update_all(making_status:"制作待ち")
       end
-      redirect_to admin_homes_top_path(@oder_detail)
+      redirect_to admin_oder_path(params[:id])
     end
   end
 

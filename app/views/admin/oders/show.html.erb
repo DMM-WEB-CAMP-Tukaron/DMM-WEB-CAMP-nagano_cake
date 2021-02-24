@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row m-5">
-    
+
   </div>
   <div class="row">
     <div class="col-">
@@ -47,9 +47,9 @@
         <% @oder_detail.oder_items.each do |item| %>
           <tr>
             <td><%= item.item.name %></td>
-            <td><%= (item.item.price*1.1) %></td>
+            <td><%= (item.item.price*1.1).floor %></td>
             <td><%= item.amount %></td>
-            <td><%= (item.amount*item.item.price*1.1) %></td>
+            <td><%= (item.amount*item.item.price*1.1).floor %></td>
             <td><%= form_with model: item, url: admin_oder_detail_path(item.id), local:true do |f| %>
                   <%= "制作ステータス" %><%= f.select :making_status,OderItem.making_statuses.keys.to_a, {} %>
             </td>
